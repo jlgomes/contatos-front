@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DialogComponent } from 'src/app/abstract/dialog/dialog.component';
 import { DIALOG, TOAST } from 'src/app/abstract/constant/constant-messages';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-contato-list',
@@ -15,6 +16,8 @@ import { DIALOG, TOAST } from 'src/app/abstract/constant/constant-messages';
 export class ContatoListComponent implements OnInit {
 
   contatos: Contato[];
+  contatosFiltered: Contato[];
+  search = new FormControl('');
 	 
   constructor(
     private router: Router,
@@ -30,7 +33,16 @@ export class ContatoListComponent implements OnInit {
   getAll() {
     this.contatoService.findAll().subscribe(data => {
       this.contatos = data;
+      this.contatosFiltered = data;
     });
+  }
+
+  buscar() {
+    this.contatosFiltered = Object.assign([], this.contatos).filter(
+      contato => (contato.nome.toLowerCase().trim().indexOf(this.search.value.toLowerCase().trim()) > -1
+        || contato.email.toLowerCase().trim().indexOf(this.search.value.toLowerCase().trim()) > -1
+        || contato.telefone.toLowerCase().trim().indexOf(this.search.value.toLowerCase().trim()) > -1)
+    )
   }
 
   edit(obj: Contato) {

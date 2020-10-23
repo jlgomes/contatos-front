@@ -21,6 +21,15 @@
     margin-right: 5px !important;
 }
 
+.mat-icon-btn {
+    margin-left: -7px !important; 
+    margin-top: -3px !important;
+}
+
+.div-search {
+    margin-bottom: 10px;
+}
+
 .warning-snackbar {
     background-color: rgba(239, 108, 0, 1) !important;
 }
