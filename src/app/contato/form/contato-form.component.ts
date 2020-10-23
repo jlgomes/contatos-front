@@ -14,7 +14,6 @@ import { ContatoService } from '../service/contato-service.service';
 export class ContatoFormComponent implements OnInit {
 
   contato: Contato;
-  contatoForm: FormGroup;
   
   constructor(
     private route: ActivatedRoute, 
@@ -26,17 +25,22 @@ export class ContatoFormComponent implements OnInit {
   
   ngOnInit(): void {
     this.getOne();
-    this.contatoForm = new FormGroup({
-      email: new FormControl('', [ 
-          Validators.required,
-          Validators.email 
-      ]),
-      telefone: new FormControl('', [
-          // Validators.pattern("[^ @]*@[^ @]*"), 
-          Validators.required
-      ]),
-      language: new FormControl() 
-  });
+  }
+  
+  async getOne() {
+    console.log('ok');
+    if (this.route.snapshot.paramMap.get('id') !== null) {
+        const id = this.route.snapshot.paramMap.get('id');
+        await this.contatoService.findId(parseInt(id)).subscribe(
+            success => {
+                this.contato = success;
+                console.log(this.contato);
+            }, error => {
+                console.log('============= ERRO ===========');
+                console.log(error);
+            }
+        );
+    }
   }
   
   onSubmit() {
@@ -66,22 +70,6 @@ export class ContatoFormComponent implements OnInit {
     this.router.navigate(['/contatos']);
   }
 
-  async getOne() {
-    console.log('ok');
-    if (this.route.snapshot.paramMap.get('id') !== null) {
-        const id = this.route.snapshot.paramMap.get('id');
-        await this.contatoService.findId(parseInt(id)).subscribe(
-            success => {
-                this.contato = success;
-                console.log(this.contato);
-            }, error => {
-                console.log('============= ERRO ===========');
-                console.log(error);
-            }
-        );
-    }
-  }
-  
   toast(message: string, action: string, type: string) {
     this.snack.open(message, action, {
         duration: 5 * 1000,
@@ -91,16 +79,4 @@ export class ContatoFormComponent implements OnInit {
     });
   }
 
-  validate(field: FormControl): boolean {
-    if (field.value) {
-        if ((typeof field.value === 'string')) {
-            field.setValue(field.value.trim());
-            field.setErrors({ invalid: !field.value.trim().length });
-            if (field.value.trim().length) {
-                field.updateValueAndValidity();
-            }
-        }
-    }
-    return field.errors !== null ? field.errors.invalid : false;
-  }
 }
