@@ -1,4 +1,6 @@
 # ContatosFront
+Este projeto se refere ao front-end de uma agenda de contatos.
+O back-end feito em Java está em: https://github.com/jlgomes/contatos
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.0.
 
