@@ -1,4 +1,4 @@
-# ContatosFront
+# Agenda de Contatos
 Este projeto se refere ao front-end de uma agenda de contatos.
 O back-end feito em Java está em: https://github.com/jlgomes/contatos
 
