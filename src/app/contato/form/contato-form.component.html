@@ -1,0 +1,59 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #contatoForm="ngForm">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" [(ngModel)]="contato.nome" 
+            class="form-control" id="nome"  name="nome"  
+            placeholder="Digite seu nome" required #nome="ngModel">
+          <div [hidden]="!nome.hasError('required')" class="alert alert-danger">
+            Nome é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" [(ngModel)]="contato.email" 
+            class="form-control" id="email" name="email" type="email"
+            pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            placeholder="Digite seu email" required #email="ngModel">
+          <div [hidden]="!email.hasError('required')" class="alert alert-danger">
+            Email é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input type="text" [(ngModel)]="contato.telefone" 
+            class="form-control" id="telefone" name="telefone" 
+            pattern="^\([1-9]{2}\) (?:[2-8]|9[1-9])[0-9]{3}\-[0-9]{4}$"
+            placeholder="Digite seu telefone (99) 9999-9999" required #telefone="ngModel">
+          <div [hidden]="!telefone.hasError('required')" class="alert alert-danger">
+            Telefone é obrigatório
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Sexo</label>
+          <select id="sexo" name="sexo" [(ngModel)]="contato.sexo" 
+            #sexo="ngModel" required class="form-control">
+            <option value="Homem">Homem</option>
+            <option value="Mulher">Mulher</option>
+            <option value="Outro">Outro</option>
+          </select>
+          <div [hidden]="!sexo.hasError('required')" class="alert alert-danger">
+            Sexo é obrigatório
+          </div>
+        </div>
+
+      </form>
+      
+      <div>
+        <button type="submit" [disabled]="!contatoForm.form.valid" (click)="onSubmit()"
+          class="btn btn-success float-right">Salvar</button>
+        <button type="submit" style="margin-right: 10px;" (click)="gotoContatoList()"
+          class="btn btn-secondary float-right">Cancelar</button>
+      </div>
+      
+    </div>
+</div>

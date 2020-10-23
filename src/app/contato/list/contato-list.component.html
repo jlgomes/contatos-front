@@ -1,0 +1,31 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contato of contatos">
+            <td>{{ contato.id }}</td>
+            <td>{{ contato.nome }}</td> 
+            <td><a href="mailto:{{ contato.email }}">{{ contato.email }}</a></td>
+            <td>{{ contato.telefone }}</td> 
+            <td>
+              <button id="btn_edit" mat-icon-button aria-label="edit" (click)="edit(contato)" class="btn btn-primary btn-edit">
+                <mat-icon style="margin-left: -7px !important; margin-top: -3px !important;" matTooltip="Editar">mode_edit</mat-icon>
+              </button>
+              <button id="btn_delete"mat-icon-button (click)="delete(contato)" class="btn btn-danger btn-delete">
+                  <mat-icon style="margin-left: -7px !important; margin-top: -3px !important;" matTooltip="Excluir">delete</mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>

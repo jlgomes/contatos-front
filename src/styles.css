@@ -1,0 +1,54 @@
+
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.text-right {text-align: right;}
+.text-left {text-align: left;}
+.text-center { text-align: center;}
+
+/* Botões de Ação */
+
+.btn-edit {
+    /* color:#DDAA2A !important;  */
+    margin-right: 5px !important;
+    width: 32px !important;
+    height: 32px !important;
+}
+.btn-delete {
+    width: 32px !important;
+    height: 32px !important;
+    /* color:#D61313 !important;  */
+    margin-right: 5px !important;
+}
+
+.warning-snackbar {
+    background-color: rgba(239, 108, 0, 1) !important;
+}
+
+.error-snackbar {
+    background-color: rgba(198, 40, 40, 1) !important;
+}
+
+.success-snackbar {
+    background-color: rgba(46, 125, 50, 1) !important;
+}
+
+.mat-simple-snackbar-action {
+    color: #ffffff !important;
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-form-field-label-wrapper {
+    color: #50DEFF !important;
+}
+
+.mat-form-field-label {
+    color: rgb(141, 230, 250) !important;
+}
+
+.mat-form-field.mat-focused mat-form-field-label {
+    color: red !important;
+}
