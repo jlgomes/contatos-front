@@ -10,7 +10,7 @@ export class ContatoService {
   private contatosUrl: string;
 	
   constructor(private http: HttpClient) {
-    this.contatosUrl = 'http://localhost:8080/contato';
+    this.contatosUrl = 'http://localhost:8080/api/1.0/contacts';
   }
  
   public findAll(): Observable<Contato[]> {
